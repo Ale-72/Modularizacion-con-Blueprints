@@ -1,15 +1,97 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
-{% block content%}
-<h1>Listado de tareas</h1>
-<a href="{{ url_for('bp_tarea.create') }}">Nueva tarea </a>
+{% block title %}Tareas - Gestión de Equipo{% endblock %}
 
-<ul>
-    {% for item in tareas %}
-    <li>Tarea: {{ item.descripcion}} Completado: {{ item.completado }}</li>
-    {% else %}
-    <li>No hay tareas</li>
-    {% endfor %}
-</ul>
+{% block content %}
+<div class="row mb-4 align-items-center">
+    <div class="col-md-6 mb-3 mb-md-0">
+        <h2 class="fw-extrabold text-dark d-flex align-items-center gap-2 mb-1">
+            <i class="bi bi-check2-square text-primary"></i> Tareas y Actividades
+        </h2>
+        <p class="text-muted mb-0">Controla el avance de las asignaciones de tu equipo de trabajo.</p>
+    </div>
+    <div class="col-md-6 text-md-end">
+        <a href="{{ url_for('bp_tarea.create') }}" class="btn btn-secondary-grad px-4 py-2.5">
+            <i class="bi bi-plus-circle-fill me-2"></i>Nueva Tarea
+        </a>
+    </div>
+</div>
 
+<div class="card glass-card border-0 overflow-hidden mb-4">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-custom table-hover mb-0 w-100">
+                <thead>
+                    <tr>
+                        <th style="width: 10%">ID</th>
+                        <th style="width: 50%">Descripción de la Tarea</th>
+                        <th style="width: 20%">Estado</th>
+                        <th style="width: 20%" class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in tareas %}
+                    <tr>
+                        <td>
+                            <span class="badge bg-light text-dark font-monospace border px-2 py-1.5" style="font-size: 0.85rem;">
+                                #{{ item.id }}
+                            </span>
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center gap-3">
+                                {% if item.completado %}
+                                <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(5, 150, 105, 0.15) 100%); font-weight: 700; color: #059669;">
+                                    <i class="bi bi-check-all" style="font-size: 1.25rem;"></i>
+                                </div>
+                                {% else %}
+                                <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(217, 119, 6, 0.15) 100%); font-weight: 700; color: #d97706;">
+                                    <i class="bi bi-clock-history" style="font-size: 1.25rem;"></i>
+                                </div>
+                                {% endif %}
+                                <span class="fw-semibold {% if item.completado %}text-decoration-line-through text-muted{% else %}text-dark{% endif %}" style="font-size: 1rem;">
+                                    {{ item.descripcion }}
+                                </span>
+                            </div>
+                        </td>
+                         <td>
+                            {% if item.completado %}
+                            <span class="badge-completed">
+                                <i class="bi bi-check-circle-fill"></i> Completada
+                            </span>
+                            {% else %}
+                            <span class="badge-pending">
+                                <i class="bi bi-hourglass-split"></i> Pendiente
+                            </span>
+                            {% endif %}
+                        </td>
+                        <td class="text-center">
+                            <div class="d-inline-flex gap-2">
+                                <a href="{{ url_for('bp_tarea.edit', id=item.id) }}" class="btn btn-sm btn-outline-primary" style="border-radius: 8px; padding: 0.5rem 0.8rem;" title="Editar Tarea">
+                                    <i class="bi bi-pencil-square"></i> <span class="d-none d-lg-inline ms-1">Editar</span>
+                                </a>
+                                <a href="{{ url_for('bp_tarea.delete', id=item.id) }}" class="btn btn-sm btn-outline-danger" style="border-radius: 8px; padding: 0.5rem 0.8rem;" title="Eliminar Tarea" onclick="return confirm('¿Está seguro de que desea eliminar esta tarea?');">
+                                    <i class="bi bi-trash3"></i> <span class="d-none d-lg-inline ms-1">Eliminar</span>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="4" class="text-center py-5">
+                            <div class="text-muted">
+                                <i class="bi bi-check2-square text-muted mb-3" style="font-size: 3rem; display: block; opacity: 0.5;"></i>
+                                <p class="lead mb-1">No hay tareas creadas para este equipo</p>
+                                <p class="small text-secondary mb-3">Comienza asignando una nueva actividad utilizando el botón superior.</p>
+                                <a href="{{ url_for('bp_tarea.create') }}" class="btn btn-sm btn-secondary-grad">
+                                    <i class="bi bi-plus-circle-fill me-1"></i> Asignar Tarea
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 {% endblock %}

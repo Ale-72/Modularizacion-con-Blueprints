@@ -1,15 +1,83 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
-{% block content%}
-<h1>Listado de miembros</h1>
-<a href="{{ url_for('bp_miembro.create') }}">Nuevo miembro </a>
+{% block title %}Miembros del Equipo - Gestión de Equipo{% endblock %}
 
-<ul>
-    {% for item in miembros %}
-    <li>Nombre: {{ item.nombre}} Email: {{ item.email }}</li>
-    {% else %}
-    <li>No hay miembros</li>
-    {% endfor %}
-</ul>
+{% block content %}
+<div class="row mb-4 align-items-center">
+    <div class="col-md-6 mb-3 mb-md-0">
+        <h2 class="fw-extrabold text-dark d-flex align-items-center gap-2 mb-1">
+            <i class="bi bi-people-fill text-indigo" style="color: #6366f1;"></i> Miembros del Equipo
+        </h2>
+        <p class="text-muted mb-0">Visualiza, añade, actualiza o elimina a los integrantes del equipo.</p>
+    </div>
+    <div class="col-md-6 text-md-end">
+        <a href="{{ url_for('bp_miembro.create') }}" class="btn btn-primary-grad px-4 py-2.5">
+            <i class="bi bi-person-plus-fill me-2"></i>Nuevo Miembro
+        </a>
+    </div>
+</div>
 
+<div class="card glass-card border-0 overflow-hidden mb-4">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-custom table-hover mb-0 w-100">
+                <thead>
+                    <tr>
+                        <th style="width: 10%">ID</th>
+                        <th style="width: 40%">Nombre Completo</th>
+                        <th style="width: 30%">Correo Electrónico</th>
+                        <th style="width: 20%" class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in miembros %}
+                    <tr>
+                        <td>
+                            <span class="badge bg-light text-dark font-monospace border px-2 py-1.5" style="font-size: 0.85rem;">
+                                #{{ item.id }}
+                            </span>
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(79, 70, 229, 0.15) 100%); font-weight: 700; color: #4f46e5;">
+                                    {{ item.nombre[0].upper() if item.nombre else 'M' }}
+                                </div>
+                                <span class="fw-semibold text-dark">{{ item.nombre }}</span>
+                            </div>
+                        </td>
+                        <td>
+                            <a href="mailto:{{ item.email }}" class="text-secondary text-decoration-none d-flex align-items-center gap-1.5">
+                                <i class="bi bi-envelope text-muted"></i> {{ item.email }}
+                            </a>
+                        </td>
+                        <td class="text-center">
+                            <div class="d-inline-flex gap-2">
+                                <a href="{{ url_for('bp_miembro.edit', id=item.id) }}" class="btn btn-sm btn-outline-primary" style="border-radius: 8px; padding: 0.5rem 0.8rem;" title="Editar Miembro">
+                                    <i class="bi bi-pencil-square"></i> <span class="d-none d-lg-inline ms-1">Editar</span>
+                                </a>
+                                <a href="{{ url_for('bp_miembro.delete', id=item.id) }}" class="btn btn-sm btn-outline-danger" style="border-radius: 8px; padding: 0.5rem 0.8rem;" title="Eliminar Miembro" onclick="return confirm('¿Está seguro de que desea eliminar a {{ item.nombre }}?');">
+                                    <i class="bi bi-trash3"></i> <span class="d-none d-lg-inline ms-1">Eliminar</span>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="4" class="text-center py-5">
+                            <div class="text-muted">
+                                <i class="bi bi-people-fill text-muted mb-3" style="font-size: 3rem; display: block; opacity: 0.5;"></i>
+                                <p class="lead mb-1">No hay miembros registrados en este equipo</p>
+                                <p class="small text-secondary mb-3">Comienza agregando un nuevo miembro usando el botón superior.</p>
+                                <a href="{{ url_for('bp_miembro.create') }}" class="btn btn-sm btn-primary-grad">
+                                    <i class="bi bi-person-plus-fill me-1"></i> Agregar Miembro
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 {% endblock %}
