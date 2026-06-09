@@ -8,17 +8,21 @@ Este es un proyecto de ejemplo que implementa una aplicacion web modular en Flas
 - Flask
 - Flask-SQLAlchemy (Base de datos SQLite3)
 - Flask-Migrate (Gestion de migraciones con Alembic)
+- Flask-Login (Control de sesiones de usuario y autenticación)
+- Flask-Bcrypt (Encriptación segura de contraseñas)
 - Bootstrap 5 (Estilizacion responsiva)
 
 ## Estructura del proyecto
 
-- blueprintapp: Directorio principal de la aplicacion.
-  - core: Modulo del panel de control principal.
-  - miembros: Modulo para la administracion de miembros del equipo (CRUD).
-  - tareas: Modulo para la asignacion y control de tareas (CRUD).
-  - templates: Plantilla base compartida.
-- run.py: Archivo de entrada para ejecutar la aplicacion.
-- requirements.txt: Lista de dependencias del proyecto.
+- **blueprintapp**: Directorio principal de la aplicacion.
+  - **auth**: Modulo de autenticacion (registro, inicio y cierre de sesion).
+  - **core**: Modulo del panel de control principal.
+  - **miembros**: Modulo para la administracion de miembros del equipo (CRUD, protegido).
+  - **tareas**: Modulo para la asignacion y control de tareas (CRUD, protegido).
+  - **static/css/style.css**: Estilos globales de la aplicacion (separados del template base).
+  - **templates**: Plantilla base compartida.
+- **run.py**: Archivo de entrada para ejecutar la aplicacion.
+- **requirements.txt**: Lista de dependencias del proyecto.
 
 ## Instalacion y ejecucion
 
@@ -42,12 +46,12 @@ pip install -r requirements.txt
 ```
 
 ### 4. Inicializar y configurar la base de datos
-Establezca la aplicacion Flask y ejecute los comandos de Flask-Migrate para crear las tablas en la base de datos SQLite:
+Establezca la aplicacion Flask y ejecute los comandos de Flask-Migrate para crear y actualizar las tablas en la base de datos SQLite:
 
 ```bash
 export FLASK_APP=run.py
-flask db init
-flask db migrate -m "Creacion de tablas miembros y tareas"
+flask db init (si no está inicializado)
+flask db migrate -m "Crear tabla usuarios"
 flask db upgrade
 ```
 
@@ -64,7 +68,9 @@ Abra su navegador de internet y acceda a `http://127.0.0.1:5000`.
 
 ## Funcionalidades completadas
 
-- Panel de inicio interactivo con acceso a los modulos.
-- Modulo de Miembros: Operaciones completas de creacion, lectura, actualizacion y eliminacion de registros.
-- Modulo de Tareas: Registro de actividades con control de estado completado o pendiente y edicion integral.
-- Diseño responsivo moderno y optimizado utilizando estilos de Bootstrap 5.
+- **Autenticación completa**: Sistema de registro de usuarios con hashing Bcrypt, inicio de sesión persistente con Flask-Login y cierre de sesión seguro.
+- **Rutas protegidas**: Modulos de Miembros y Tareas restringidos exclusivamente a usuarios autenticados.
+- **Estilos optimizados**: CSS extraído en una hoja de estilo independiente (`style.css`) para mejorar el rendimiento y modularidad.
+- **Panel de inicio interactivo** con accesos condicionales y notificaciones flash dinámicas de estado.
+- **Modulo de Miembros**: Operaciones completas de creacion, lectura, actualizacion y eliminacion de registros.
+- **Modulo de Tareas**: Registro de actividades con control de estado completado o pendiente y edicion integral.

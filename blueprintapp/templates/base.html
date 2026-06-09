@@ -17,289 +17,8 @@
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
 
-    <style>
-        :root {
-            --primary-grad: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
-            --secondary-grad: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-            --accent-grad: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            --danger-grad: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%);
-            --dark-bg: #0f172a;
-            --card-bg: rgba(255, 255, 255, 0.85);
-            --font-family: 'Outfit', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        }
-
-        body {
-            font-family: var(--font-family);
-            background: radial-gradient(circle at 10% 20%, rgba(243, 244, 246, 1) 0%, rgba(229, 231, 235, 1) 90%);
-            min-height: 100vh;
-            color: #1e293b;
-            display: flex;
-            flex-direction: column;
-            overflow-x: hidden;
-        }
-
-        /* Top navigation bar */
-        .navbar-custom {
-            background: rgba(255, 255, 255, 0.8) !important;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
-            transition: all 0.3s ease;
-        }
-
-        .navbar-brand {
-            font-weight: 800;
-            background: var(--primary-grad);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-size: 1.5rem;
-            letter-spacing: -0.5px;
-        }
-
-        .nav-link-custom {
-            font-weight: 500;
-            color: #475569 !important;
-            padding: 0.6rem 1.2rem !important;
-            border-radius: 8px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            margin: 0 0.2rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .nav-link-custom:hover {
-            color: #4f46e5 !important;
-            background: rgba(99, 102, 241, 0.08);
-            transform: translateY(-1px);
-        }
-
-        .nav-link-custom.active {
-            color: #fff !important;
-            background: var(--primary-grad) !important;
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
-        }
-
-        /* Cards & Containers */
-        .glass-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.7);
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .glass-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
-        }
-
-        /* Beautiful buttons */
-        .btn-primary-grad {
-            background: var(--primary-grad);
-            border: none;
-            color: white;
-            font-weight: 600;
-            padding: 0.6rem 1.5rem;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.35);
-        }
-
-        .btn-primary-grad:hover {
-            opacity: 0.95;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.45);
-            color: white;
-        }
-
-        .btn-secondary-grad {
-            background: var(--secondary-grad);
-            border: none;
-            color: white;
-            font-weight: 600;
-            padding: 0.6rem 1.5rem;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.35);
-        }
-
-        .btn-secondary-grad:hover {
-            opacity: 0.95;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.45);
-            color: white;
-        }
-
-        .btn-danger-grad {
-            background: var(--danger-grad);
-            border: none;
-            color: white;
-            font-weight: 600;
-            padding: 0.6rem 1.5rem;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(244, 63, 94, 0.35);
-        }
-
-        .btn-danger-grad:hover {
-            opacity: 0.95;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(244, 63, 94, 0.45);
-            color: white;
-        }
-
-        .btn-outline-custom {
-            border: 2px solid #e2e8f0;
-            color: #475569;
-            font-weight: 600;
-            padding: 0.6rem 1.5rem;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-            background: transparent;
-        }
-
-        .btn-outline-custom:hover {
-            background: #f1f5f9;
-            color: #1e293b;
-            border-color: #cbd5e1;
-            transform: translateY(-1px);
-        }
-
-        /* Tables */
-        .table-custom {
-            border-radius: 12px;
-            overflow: hidden;
-            border: none;
-        }
-
-        .table-custom thead {
-            background: var(--primary-grad);
-            color: white;
-        }
-
-        .table-custom thead th {
-            font-weight: 600;
-            border: none;
-            padding: 1.1rem 1.5rem;
-        }
-
-        .table-custom tbody td {
-            padding: 1rem 1.5rem;
-            vertical-align: middle;
-            background: rgba(255, 255, 255, 0.5);
-            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
-        }
-
-        .table-custom tbody tr:last-child td {
-            border-bottom: none;
-        }
-
-        .table-custom tbody tr:hover td {
-            background: rgba(255, 255, 255, 0.95);
-        }
-
-        /* Badges */
-        .badge-completed {
-            background: rgba(16, 185, 129, 0.1);
-            color: #065f46;
-            border: 1px solid rgba(16, 185, 129, 0.2);
-            padding: 0.4rem 0.8rem;
-            font-size: 0.8rem;
-            font-weight: 600;
-            border-radius: 50px;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.3rem;
-        }
-
-        .badge-pending {
-            background: rgba(245, 158, 11, 0.1);
-            color: #92400e;
-            border: 1px solid rgba(245, 158, 11, 0.2);
-            padding: 0.4rem 0.8rem;
-            font-size: 0.8rem;
-            font-weight: 600;
-            border-radius: 50px;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.3rem;
-        }
-
-        /* Forms styling */
-        .form-control-custom {
-            border-radius: 10px;
-            border: 1.5px solid #e2e8f0;
-            padding: 0.75rem 1rem;
-            font-weight: 400;
-            transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.8);
-        }
-
-        .form-control-custom:focus {
-            border-color: #6366f1;
-            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
-            background: #fff;
-            outline: none;
-        }
-
-        /* Footer */
-        footer {
-            margin-top: auto;
-            background: rgba(255, 255, 255, 0.7);
-            border-top: 1px solid rgba(226, 232, 240, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 1.5rem 0;
-            text-align: center;
-            font-size: 0.9rem;
-            color: #64748b;
-            font-weight: 500;
-        }
-
-        /* Hero block on homepage */
-        .hero-section {
-            background: var(--primary-grad);
-            border-radius: 20px;
-            padding: 3rem 2rem;
-            color: white;
-            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
-            position: relative;
-            overflow: hidden;
-            margin-bottom: 2.5rem;
-        }
-
-        .hero-pattern {
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            opacity: 0.1;
-            background-image: radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 0), radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 0);
-            background-size: 20px 20px;
-            background-position: 0 0, 10px 10px;
-        }
-
-        /* Page transitions */
-        .fade-in {
-            animation: fadeIn 0.5s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    </style>
+    <!-- Archivo de Estilos Externo -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 
 <body>
@@ -322,6 +41,8 @@
                             <i class="bi bi-house-door"></i> Inicio
                         </a>
                     </li>
+                    <!-- Enlaces condicionales por autenticacion -->
+                    {% if current_user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link nav-link-custom {% if request.blueprint == 'bp_miembro' %}active{% endif %}"
                             href="{{ url_for('bp_miembro.index') }}">
@@ -334,6 +55,25 @@
                             <i class="bi bi-check2-square"></i> Tareas
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom text-danger" href="{{ url_for('bp_auth.logout') }}">
+                            <i class="bi bi-box-arrow-right"></i> Salir ({{ current_user.username }})
+                        </a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom {% if request.blueprint == 'bp_auth' and request.endpoint == 'bp_auth.login' %}active{% endif %}"
+                            href="{{ url_for('bp_auth.login') }}">
+                            <i class="bi bi-box-arrow-in-right"></i> Iniciar Sesión
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom {% if request.blueprint == 'bp_auth' and request.endpoint == 'bp_auth.register' %}active{% endif %}"
+                            href="{{ url_for('bp_auth.register') }}">
+                            <i class="bi bi-person-plus"></i> Registrarse
+                        </a>
+                    </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
@@ -341,6 +81,19 @@
 
     <!-- Main Container -->
     <main class="container py-4 flex-grow-1 fade-in">
+        <!-- Alertas Flash -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ 'danger' if category == 'error' or category == 'danger' else category }} alert-dismissible fade show shadow-sm" role="alert" style="border-radius: 10px;">
+                        <i class="bi {% if category == 'error' or category == 'danger' %}bi-exclamation-triangle-fill{% elif category == 'success' %}bi-check-circle-fill{% else %}bi-info-circle-fill{% endif %} me-2"></i>
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
         {% block content %}
         {% endblock %}
     </main>
