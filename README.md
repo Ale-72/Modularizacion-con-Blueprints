@@ -1,4 +1,4 @@
-# Sistema de Gestion de Equipo - Participacion 19-05-26
+# Sistema de Gestion de Equipo - Participacion
 
 Este es un proyecto de ejemplo que implementa una aplicacion web modular en Flask para la gestion de miembros de un equipo de trabajo y el control de sus tareas asignadas. La aplicacion esta estructurada utilizando el patron de diseño MVC mediante Flask Blueprints, lo que permite separar logicamente las rutas, modelos y plantillas de cada modulo.
 
