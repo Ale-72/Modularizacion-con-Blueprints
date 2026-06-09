@@ -27,9 +27,11 @@ Este es un proyecto de ejemplo que implementa una aplicacion web modular en Flas
 ## Instalacion y ejecucion
 
 ### 1. Clonar o acceder al directorio del proyecto
+
 Asegurese de abrir su terminal en el directorio raiz del proyecto.
 
 ### 2. Crear y activar el entorno virtual
+
 Ejecute los siguientes comandos en su terminal:
 
 ```bash
@@ -39,6 +41,7 @@ venv\Scripts\activate (en Windows)
 ```
 
 ### 3. Instalar las dependencias
+
 Instale los paquetes requeridos especificados en el archivo de requerimientos:
 
 ```bash
@@ -46,6 +49,7 @@ pip install -r requirements.txt
 ```
 
 ### 4. Inicializar y configurar la base de datos
+
 Establezca la aplicacion Flask y ejecute los comandos de Flask-Migrate para crear y actualizar las tablas en la base de datos SQLite:
 
 ```bash
@@ -58,6 +62,7 @@ flask db upgrade
 La base de datos se creara de forma automatica en la ruta `instance/bd_equipo.db`.
 
 ### 5. Iniciar la aplicacion
+
 Para arrancar el servidor de desarrollo, ejecute:
 
 ```bash
